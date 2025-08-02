@@ -1,0 +1,275 @@
+# AI QA Orchestrator - Application Configuration
+# Configure this file to test your specific application
+
+# Application Details
+application:
+  name: "Google.com Web Application"
+  type: "web"  # Testing web application with UI
+  language: "javascript"  # Google's frontend
+  framework: "react"  # Assumed framework
+
+# Application URLs
+urls:
+  base_url: "https://www.google.com"
+  search_url: "https://www.google.com/search"
+  images_url: "https://www.google.com/imghp"
+
+# API Configuration (Limited for Google.com public endpoints)
+api:
+  authentication:
+    type: "none"  # Google.com doesn't require API authentication for basic endpoints
+  
+  endpoints:
+    # Basic Google endpoints for testing
+    - path: "/"
+      methods: ["GET"]
+      authentication_required: false
+      description: "Google homepage - Status 200"
+      expected_status: 200
+    
+    - path: "/search"
+      methods: ["GET"]
+      authentication_required: false
+      description: "Google search page - Status 200"
+      expected_status: 200
+      
+    - path: "/imghp"
+      methods: ["GET"]
+      authentication_required: false
+      description: "Google Images - Status 200"
+      expected_status: 200
+
+# UI Testing Configuration (Enabled for web application testing)
+ui:
+  enabled: true  # Enable UI testing for web applications
+  browser: "chrome"  # Options: chrome, firefox, safari, edge
+  headless: true  # Run in headless mode (no browser window)
+  screen_resolution: "1920x1080"
+  wait_timeout: 10  # seconds to wait for elements
+  page_load_timeout: 30  # seconds to wait for page load
+  
+  # Critical user flows to test on Google.com
+  user_flows:
+    - name: "Google Homepage Load"
+      start_url: "/"
+      description: "Verify Google homepage loads correctly"
+      steps:
+        - action: "verify"
+          selector: "[name='q']"
+          expected: "Search box is visible"
+        - action: "verify"
+          selector: "[value='Google Search']"
+          expected: "Google Search button is visible"
+        - action: "verify"
+          text: "I'm Feeling Lucky"
+          expected: "I'm Feeling Lucky button is visible"
+    
+    - name: "Basic Search Flow"
+      start_url: "/"
+      description: "Perform a basic search and verify results"
+      steps:
+        - action: "fill_form"
+          fields:
+            q: "AI Quality Assurance testing"
+        - action: "click"
+          selector: "[value='Google Search']"
+        - action: "wait"
+          duration: 3
+        - action: "verify"
+          selector: "#search"
+          expected: "Search results are displayed"
+        - action: "verify"
+          text: "results"
+          expected: "Results text is visible"
+    
+    - name: "Google Images Test"
+      start_url: "/imghp"
+      description: "Test Google Images functionality"
+      steps:
+        - action: "verify"
+          selector: "[name='q']"
+          expected: "Images search box is visible"
+        - action: "fill_form"
+          fields:
+            q: "nature photography"
+        - action: "press_key"
+          key: "Enter"
+        - action: "wait"
+          duration: 3
+        - action: "verify"
+          selector: "[data-ri]"
+          expected: "Image results are displayed"
+    
+    - name: "Search Suggestions Test"
+      start_url: "/"
+      description: "Test search suggestions functionality"
+      steps:
+        - action: "fill_form"
+          fields:
+            q: "machine learn"
+        - action: "wait"
+          duration: 2
+        - action: "verify"
+          selector: "[role='listbox']"
+          expected: "Search suggestions dropdown appears"
+    
+    - name: "Language and Region Test"
+      start_url: "/"
+      description: "Test different language/region settings"
+      steps:
+        - action: "scroll_to_bottom"
+        - action: "verify"
+          text: "Settings"
+          expected: "Settings link is visible"
+        - action: "verify"
+          text: "Privacy"
+          expected: "Privacy link is visible"
+
+# Database Configuration (N/A for Google.com testing)
+database:
+  enabled: false  # Google.com database is not accessible for testing
+  type: "n/a"
+  note: "Database testing not applicable for external web applications"
+  
+# Testing Tools Configuration
+testing_tools:
+  unit_testing:
+    framework: "n/a"  # Not applicable for external web testing
+    enabled: false
+  
+  ui_testing:
+    framework: "selenium"  # Primary UI testing framework
+    browser_driver: "chromedriver"
+    headless: true
+    implicit_wait: 10
+    page_load_timeout: 30
+    screenshot_on_failure: true
+  
+  api_testing:
+    tool: "requests"  # Python requests for basic endpoint testing
+    timeout: 30
+    verify_ssl: true
+  
+  security_testing:
+    tools: ["zap"]  # OWASP ZAP for web security scanning
+    scan_depth: "quick"  # Options: quick, medium, deep (be respectful to Google)
+    scan_types: ["passive", "spider"]  # Avoid active attacks on external sites
+  
+  performance_testing:
+    tool: "lighthouse"  # Google Lighthouse for web performance
+    scenarios:
+      - name: "Page Load Test"
+        users: 1  # Keep load minimal for external testing
+        duration: "30s"
+      - name: "Core Web Vitals"
+        metrics: ["LCP", "FID", "CLS"]
+
+# Quality Gates (Adjusted for web UI testing)
+quality_gates:
+  ui_test_pass_rate: 95  # UI tests must pass at 95%
+  api_test_pass_rate: 90  # Basic endpoint availability
+  security_critical_issues: 0  # No critical security issues
+  security_high_issues: 5  # Allow some high issues (external site)
+  performance_lighthouse_score: 70  # Lighthouse performance score
+  page_load_time: 5000  # milliseconds - Google is typically fast
+  accessibility_score: 80  # WCAG compliance score
+
+# CI/CD Integration
+cicd:
+  platform: "github"  # Options: github, gitlab, jenkins, azure_devops
+  trigger_on: ["push", "pull_request"]
+  test_environments: ["staging", "production"]
+  
+  # Deployment gates
+  deployment_gates:
+    staging:
+      - "all_tests_pass"
+      - "security_scan_clean"
+    production:
+      - "all_tests_pass"
+      - "security_scan_clean"
+      - "performance_benchmarks_met"
+
+# Environment Configuration
+environments:
+  development:
+    base_url: "https://www.google.com"
+    search_url: "https://www.google.com/search"
+    images_url: "https://www.google.com/imghp"
+    health_check: "https://www.google.com"
+  
+  staging:
+    base_url: "https://www.google.com"
+    search_url: "https://www.google.com/search"
+    images_url: "https://www.google.com/imghp"
+  
+  production:
+    base_url: "https://www.google.com"
+    search_url: "https://www.google.com/search"
+    images_url: "https://www.google.com/imghp"
+
+# AI-Specific Testing (for web application intelligence testing)
+ai_testing:
+  enabled: true
+  focus_areas:
+    - name: "search_intelligence"
+      description: "Test Google Search intelligence and relevance"
+      test_queries: ["AI quality assurance", "machine learning testing", "automated testing tools"]
+    - name: "user_experience_ai"
+      description: "Test AI-powered UX features like search suggestions"
+      features: ["autocomplete", "search_suggestions", "related_queries"]
+  
+  validation_tests:
+    consistency_tests: true  # Search result consistency
+    relevance_testing: true  # Search result relevance  
+    performance_testing: true  # Response time consistency
+    accessibility_testing: true  # AI-powered accessibility features
+    
+  test_scenarios:
+    - name: "search_quality_dataset"
+      queries: ["python testing", "selenium automation", "quality assurance"]
+      expected_behavior: "relevant_results_returned"
+    - name: "suggestion_quality_dataset"
+      partial_queries: ["machine learn", "web automat", "quality ass"]
+      expected_behavior: "helpful_suggestions_provided"
+
+# Reporting Configuration
+reporting:
+  formats: ["html", "json", "junit"]  # Output formats
+  output_directory: "./test-reports"
+  
+  # Dashboard configuration
+  dashboard:
+    enabled: true
+    port: 8501
+    auto_refresh: true
+    
+  # Notifications
+  notifications:
+    slack:
+      enabled: false
+      webhook_url: ""
+      channel: "#qa-alerts"
+    email:
+      enabled: false
+      smtp_server: "smtp.gmail.com"
+      recipients: ["qa-team@yourcompany.com"]
+
+# Advanced Configuration
+advanced:
+  parallel_execution: true
+  max_workers: 4
+  retry_failed_tests: true
+  retry_count: 3
+  test_timeout: 300  # seconds
+  
+  # Custom test generation
+  custom_test_templates:
+    enabled: false
+    templates_directory: "./custom-templates"
+  
+  # Mock services
+  mock_services:
+    enabled: false
+    mock_server_port: 3002
+    mock_definitions: "./mocks"
