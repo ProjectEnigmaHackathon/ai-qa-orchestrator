@@ -58,20 +58,38 @@ A revolutionary AI-powered system that automatically generates comprehensive tes
 - Run: `python run_demo.py` or `streamlit run app.py --server.port 8502`
 
 ### 🔍 **Real Application Mode** (Discovery-based Testing) - Port 8501
-- **Application Discovery Agent** automatically explores live applications
-- AI agents browse your app to discover features, UI elements, and workflows
+- **Application Discovery Agent** starts the workflow by exploring live applications
+- AI agents browse your app to discover features, UI elements, and workflows  
 - Generates tests based on actual application structure and source code
 - **Test Code Generator Agent** creates executable pytest automation scripts
 - Integration with real APIs, databases, and external services
+- **Live UI Scanning**: Browser automation for React, Vue, Angular applications
+- **Release Mode Testing**: Comprehensive form validation and workflow testing
 - Run: `python run_real_app.py` or `streamlit run real_app_demo.py --server.port 8501`
 
 ### 🎯 **12 Specialized AI Agents**
+
+#### **Real Application Mode Workflow** (Discovery-based):
+1. **🎯 QA Orchestrator** → Initializes comprehensive testing framework
+2. **🔍 Application Discovery Agent** → **Explores live application automatically** 
+3. **⚠️ Risk Assessor** → Analyzes discovered features for risks
+4. **🧪 Unit Test Agent** → Generates tests based on discovered components
+5. **🔗 Integration Agent** → Creates tests for discovered workflows  
+6. **🔒 Security Agent** → Builds tests for discovered attack surfaces
+7. **⚡ Performance Agent** → Generates tests for critical discovered paths
+8. **🤖 AI Validation Agent** → Tests discovered AI features and smart components
+9. **🎪 Edge Case Agent** → Creates boundary tests for application limits
+10. **📝 Test Code Generator** → Creates executable pytest automation scripts
+11. **🚀 Test Executor** → Executes all tests against real application
+12. **✅ Quality Reviewer** → Scores quality and generates comprehensive reports
+
+#### **Agent Mode Comparison**:
 
 | Agent | Demo Mode | Real App Mode | Function |
 |-------|-----------|---------------|----------|
 | 🎯 QA Orchestrator | ✅ | ✅ | Coordinates all testing activities |
 | 📋 Story Analyst | ✅ | ❌ | Analyzes user stories and requirements |
-| 🔍 Application Discovery | ❌ | ✅ | Explores live applications automatically |
+| 🔍 Application Discovery | ❌ | ✅ | **Starts workflow** - explores live applications automatically |
 | ⚠️ Risk Assessor | ✅ | ✅ | Identifies security, performance, and business risks |
 | 🧪 Unit Test Agent | ✅ | ✅ | Generates comprehensive unit tests |
 | 🔗 Integration Agent | ✅ | ✅ | Creates end-to-end integration tests |
@@ -200,26 +218,30 @@ streamlit run app.py --server.port 8502
 
 #### 🚀 Real Application Testing - Port 8501
 1. **Configure Your Application** (UI-based, no files needed):
-   - Choose from pre-configured apps (Hugging Face Chat, Perplexity AI, etc.)
-   - Or configure custom application (Web, API, or Hybrid)
+   - Choose from pre-configured apps or configure custom application (Web, API, or Hybrid)
+   - **Project Enigma BackEnd**: `http://localhost:8000/` for LangChain workflow testing
+   - **Project Enigma FrontEnd**: `http://localhost:3003/` for React UI and Release Mode testing
    - Set base URLs, API endpoints, and testing preferences
-   - Select test types (UI, API, Security, Performance, AI Validation)
+   - Select test types (Frontend, Backend API, Security, Performance, AI Validation)
 
 2. **Advanced Integration** (Optional):
-   - **Project Enigma Integration**: Point to `http://localhost:8000/` for LangChain workflow testing
    - **Source Code Analysis**: Place source in `project-enigma-source/` for fine-tuned tests
    - **Swagger Integration**: Automatic API endpoint discovery and testing
+   - **Live UI Scanning**: Browser automation to discover React components and workflows
+   - **Release Mode Testing**: Comprehensive form validation, repository selection, and workflow testing
 
 3. **Execute Comprehensive Testing**:
-   - **Application Discovery Agent** explores your live application
+   - **Application Discovery Agent** starts by exploring your live application
    - **Test Code Generator Agent** creates executable pytest scripts
    - All 12 agents collaborate to generate real, contextual tests
-   - Dynamic test counts based on actual application structure
+   - Dynamic test counts based on actual application structure (500+ tests for full-stack apps)
    - Real execution metrics and performance data
+   - **Live validation** against running applications
 
 4. **Review and Export**:
    - View detailed technical methodology explanations
-   - See actual generated test code (API, AI validation, performance, edge cases)
+   - See actual generated test code (Frontend, Backend API, AI validation, performance, edge cases)
+   - **Release Mode test examples** with form validation and user workflow testing
    - Export complete test automation project with CI/CD configurations
    - Download and run tests independently with proper setup instructions
 
@@ -228,9 +250,13 @@ streamlit run app.py --server.port 8502
 - **📝 Test Code Generator Agent**: Creates executable pytest automation scripts
 - **🛠️ Source Code Analysis**: Analyzes LangChain workflows for precise AI validation
 - **📦 Complete Project Export**: Download full test automation projects
-- **🔄 Dynamic Test Metrics**: Real numbers based on actual application analysis
+- **🔄 Dynamic Test Metrics**: Real numbers based on actual application analysis (500+ tests for full-stack apps)
 - **🚀 Dual Port Setup**: Run both modes simultaneously for comparisons
 - **🔐 Secure Configuration**: Environment-based API key management
+- **🔍 Live UI Scanning**: Browser automation to discover and test React components
+- **📋 Release Mode Testing**: Comprehensive form validation, repository selection, and workflow testing 
+- **🎯 Application Discovery First**: Real Application Mode starts with App Discovery Agent (not Story Analyst)
+- **🏗️ Project Enigma Integration**: Separate BackEnd and FrontEnd testing with live validation
 
 ### 🎯 Demo Scenarios
 
@@ -261,16 +287,21 @@ The AI QA Orchestrator can test your actual applications with UI and APIs! Here'
 - **Web Applications** (React, Vue, Angular, HTML/CSS/JS)
 - **API Services** (REST, GraphQL, microservices)
 - **Full-Stack Applications** (MEAN, MERN, Django, Flask, FastAPI)
-- **AI-Powered Applications** (Chat apps, recommendation engines, ML services)
+- **AI-Powered Applications** (Chat apps, recommendation engines, ML services, LangChain workflows)
 - **Mobile Web Apps** (responsive web applications)
+- **Hybrid Applications** (Frontend + Backend with integrated testing)
 
 #### 🔧 Real Testing Capabilities
 - **Live API Testing** - Tests your actual API endpoints with real requests
-- **Browser Automation** - Uses Selenium/Playwright for real UI testing
+- **Browser Automation** - Selenium-based UI discovery and testing for React components
+- **Release Mode Testing** - Form validation, repository selection, workflow testing
+- **Live UI Scanning** - Automatic discovery of UI elements, buttons, inputs, and user flows
 - **Database Integration** - Tests actual database operations and data integrity
-- **Performance Monitoring** - Real load testing with K6 or similar tools
-- **Security Scanning** - Uses OWASP ZAP and other security tools
+- **Performance Monitoring** - Real load testing with response time analysis
+- **Security Scanning** - Comprehensive security testing including form validation
 - **Code Coverage** - Generates actual coverage reports from your test runs
+- **Component Testing** - React Testing Library integration for component-level tests
+- **Integration Testing** - API + Frontend integration with mock service workers
 
 #### ⚙️ Easy Configuration
 1. **Simple YAML Configuration** - Configure your app in `config/app_config.yml`
@@ -278,28 +309,55 @@ The AI QA Orchestrator can test your actual applications with UI and APIs! Here'
 3. **Quality Gates** - Set custom thresholds for coverage, performance, and security
 4. **CI/CD Integration** - Ready-to-use pipeline configurations
 
-#### 🎯 Example Configuration
+#### 🎯 Example Configurations
+
+**Project Enigma FrontEnd (React + Release Mode):**
 ```yaml
 application:
-  name: "My AI Chat App"
-  type: "web"
-  language: "javascript"
+  name: "Project Enigma FrontEnd"
+  type: "hybrid"
+  language: "typescript"
   framework: "react"
 
 urls:
-  base_url: "http://localhost:3000"
-  api_base_url: "http://localhost:3001/api"
+  base_url: "http://localhost:3003"
+  api_base_url: "http://localhost:3003/api"
+
+ui_features:
+  release_mode: true
+  form_validation: true
+  repository_selection: true
+
+quality_gates:
+  component_test_coverage: 90
+  ui_test_pass_rate: 100
+  accessibility_score: 95
+```
+
+**Project Enigma BackEnd (FastAPI + LangChain):**
+```yaml
+application:
+  name: "Project Enigma BackEnd"
+  type: "hybrid"
+  language: "python"
+  framework: "fastapi"
+
+urls:
+  base_url: "http://localhost:8000"
+  api_base_url: "http://localhost:8000/api"
 
 api:
   endpoints:
     - path: "/chat"
       methods: ["POST"]
-    - path: "/health" 
+    - path: "/repositories"
+      methods: ["GET", "POST"]
+    - path: "/health"
       methods: ["GET"]
 
 quality_gates:
-  unit_test_coverage: 80
-  api_test_pass_rate: 100
+  api_test_coverage: 85
+  ai_validation_score: 90
   security_critical_issues: 0
 ```
 
@@ -307,12 +365,15 @@ quality_gates:
 
 #### Multi-Domain Test Generation
 
+- **Frontend Tests**: React component testing, user journey validation, form validation, Release Mode workflows
+- **Backend API Tests**: Endpoint testing, database integration, service communication  
 - **Unit Tests**: Happy path, error handling, edge cases, mocking
-- **Integration Tests**: API endpoints, database operations, service integration
-- **Security Tests**: OWASP Top 10, authentication, authorization, data protection
-- **Performance Tests**: Load, stress, spike, volume testing scenarios
+- **Integration Tests**: Frontend-backend integration, API endpoints, database operations
+- **Security Tests**: OWASP Top 10, authentication, authorization, data protection, form security
+- **Performance Tests**: Load, stress, spike, volume testing scenarios, UI performance metrics
 - **AI Validation Tests**: 25+ metrics including Faithfulness, Groundedness, Answer Relevancy, G-Eval scoring, Response time, Token efficiency, Bias detection, Toxicity classification, Hallucination prevention, Model drift monitoring
-- **Edge Case Tests**: Boundary conditions, null handling, concurrency
+- **Edge Case Tests**: Boundary conditions, null handling, concurrency, UI edge cases
+- **Release Mode Tests**: Repository selection, sprint configuration, version management, workflow validation
 
 #### Risk-Based Prioritization
 
@@ -331,23 +392,29 @@ Generated configurations for:
 
 ### 📊 Dashboard Features
 
-- **Executive Overview**: Key metrics and achievements
-- **Test Results**: Detailed test code and coverage analysis
-- **Quality Reports**: Comprehensive quality breakdown and trends
+- **Executive Overview**: Key metrics and achievements with live validation status
+- **Test Results**: Detailed test code and coverage analysis for Frontend + Backend
+- **Quality Reports**: Comprehensive quality breakdown and trends with Release Mode validation
 - **Risk Visualization**: Interactive risk matrices and heat maps
-- **Performance Monitoring**: Response times, throughput, resource usage
+- **Performance Monitoring**: Response times, throughput, resource usage, UI performance metrics
 - **AI Validation**: 25+ metrics covering RAGAS framework (Faithfulness, Groundedness, Context Precision), DeepEval capabilities (G-Eval, Answer Correctness), Performance analysis, Safety & Bias detection
+- **Live UI Testing Results**: Browser automation results with component discovery
+- **Release Mode Analytics**: Form validation results, workflow testing, user journey analysis
+- **Application Discovery Insights**: Live application exploration and feature discovery results
 
 ### 🛠️ Technical Stack
 
 - **Backend**: Python 3.11+, CrewAI, LangChain, FastAPI
 - **Frontend**: Streamlit (Dual Port: 8501/8502), Plotly, Pandas
 - **AI Models**: Anthropic Claude 3.5 Sonnet, LangChain integrations
-- **Testing Frameworks**: pytest, httpx, Selenium WebDriver, Hypothesis  
+- **Testing Frameworks**: pytest, httpx, Selenium WebDriver, Hypothesis, React Testing Library
+- **Browser Automation**: Selenium WebDriver for live UI scanning and component discovery
 - **AI Validation**: RAGAS, DeepEval, LangSmith, Promptfoo
 - **Quality Tools**: Custom scoring algorithms, memory profilers, AST analysis
 - **Configuration**: python-dotenv, YAML configs, environment management
 - **Export Tools**: ZIP generation, CI/CD templates, Docker configurations
+- **Frontend Testing**: Jest, React Testing Library, Cypress, Playwright integration examples
+- **Live Testing**: Browser automation, component discovery, Release Mode validation
 
 ### 🔧 Troubleshooting
 
@@ -465,11 +532,16 @@ This system is designed by QA architects for QA professionals:
 
 #### **Recently Implemented ✅**
 - ✅ **Test Code Generator Agent**: Executable pytest automation scripts
-- ✅ **Dynamic Test Metrics**: Real numbers from application analysis  
+- ✅ **Dynamic Test Metrics**: Real numbers from application analysis (500+ tests for full-stack apps)
 - ✅ **Source Code Integration**: LangChain workflow analysis
 - ✅ **Complete Project Export**: ZIP downloads with CI/CD configs
 - ✅ **Dual Port Architecture**: Simultaneous demo and real app testing
 - ✅ **Environment Configuration**: Secure .env-based API key management
+- ✅ **Live UI Scanning**: Browser automation for React component discovery
+- ✅ **Release Mode Testing**: Comprehensive form validation and workflow testing
+- ✅ **Application Discovery First**: Real App Mode starts with App Discovery Agent (not Story Analyst)
+- ✅ **Project Enigma BackEnd/FrontEnd**: Separate testing with live validation at localhost:8000/8003
+- ✅ **Enhanced Frontend Testing**: 290+ tests including Release Mode components and user journeys
 
 #### **Coming Next 🚧**
 - 🚧 **Database Integration Testing**: Direct database test generation
