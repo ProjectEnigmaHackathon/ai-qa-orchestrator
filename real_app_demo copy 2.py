@@ -42,8 +42,8 @@ class RealAppDemo:
         )
         
         # Main header
-        st.title("🚀 AI QA Orchestrator")
-        st.caption("Automated testing with 11 specialized AI agents")
+        st.title("🚀 AI QA Orchestrator - Real Application Testing")
+        st.subheader("Test Your AI-Powered Application with 11 Specialized AI Agents")
         
         # Dynamic UI-based configuration
         app_config = self._get_dynamic_configuration()
@@ -52,12 +52,17 @@ class RealAppDemo:
         
         # Sidebar configuration
         with st.sidebar:
-            st.header("⚙️ Config")
+            st.header("🎛️ Testing Configuration")
             
             # Application info
             app_info = app_config.get('application', {})
             base_url = app_config.get('urls', {}).get('base_url', 'Unknown')
-            st.success(f"✅ **{app_info.get('name', 'Unknown')}** ({app_info.get('type', 'Unknown')})")
+            st.success(f"""
+            ✅ **{app_info.get('name', 'Unknown')}** Ready!
+            
+            **Type:** {app_info.get('type', 'Unknown').upper()}
+            **URL:** `{base_url}`
+            """)
             
             # Get test selections from config
             test_selections = app_config.get('test_selections', {})
@@ -366,7 +371,7 @@ class RealAppDemo:
                     - ✅ **272 Total Tests** (source-generated)
                     """)
                 
-                st.info("Tests generated from actual source code")
+                st.info("🎯 **All tests generated from your actual Project Enigma source code - not generic templates!**")
         else:
             with st.expander("🤖 AI Agent Execution Summary", expanded=True):
                 st.success("✅ **All 11 AI Agents executed successfully!**")
@@ -605,7 +610,7 @@ Low Risk Issues: 0 found
         elif tab_name == "🔗 API Tests":
             st.subheader(f"API Test Results - {app_name}")
             
-                            # For Project Enigma, show real endpoint testing results
+            # For Project Enigma Backend, show real endpoint testing results
             if 'Project Enigma' in app_name and 'localhost:8000' in base_url:
                 parser = get_swagger_parser()
                 if parser.spec_data:
@@ -902,7 +907,7 @@ Error Handling: 4xx/5xx responses validated
             parser = get_swagger_parser() if 'Project Enigma' in app_name else None
             
             if 'Project Enigma' in app_name and app_type in ['api', 'hybrid']:
-                # AI-focused validation tests for Project Enigma
+                # AI-focused validation tests for Project Enigma Backend
                 st.subheader("🤖 AI Model Validation Results - Release Documentation Automation")
                 st.success("✅ AI-powered release documentation automation models validated successfully")
                 
@@ -2085,39 +2090,39 @@ quality_gates:
     def _get_dynamic_configuration(self) -> Dict[str, Any]:
         """Dynamic UI-based configuration - no config files needed!"""
         
-        st.subheader("⚙️ Application Setup")
+        st.header("⚙️ Configure Your Application to Test")
         
         # Pre-configured AI applications
         preset_apps = {
             "🤖 Hugging Face Chat (Public AI)": {
                 'application': {'name': 'Hugging Face Chat', 'type': 'web', 'language': 'javascript', 'framework': 'web'},
                 'urls': {'base_url': 'https://huggingface.co/chat', 'api_base_url': 'https://huggingface.co/api'},
-                'description': 'AI chat interface'
+                'description': '🎯 Perfect for AI validation tests! Public AI chat interface with conversation capabilities.'
             },
             "🔍 Perplexity AI (AI Search)": {
                 'application': {'name': 'Perplexity AI', 'type': 'web', 'language': 'javascript', 'framework': 'web'},
                 'urls': {'base_url': 'https://www.perplexity.ai', 'api_base_url': 'https://www.perplexity.ai/api'},
-                'description': 'AI search engine'
+                'description': '🧠 AI-powered search engine - excellent for testing search intelligence and response quality.'
             },
             "🌐 Google Search (Web Application)": {
                 'application': {'name': 'Google Search', 'type': 'web', 'language': 'javascript', 'framework': 'web'},
                 'urls': {'base_url': 'https://www.google.com', 'api_base_url': 'https://www.google.com'},
-                'description': 'Web search application'
+                'description': '🔍 World\'s most popular search engine - great for UI automation and performance testing.'
             },
             "🏠 Your Local API (localhost:5000)": {
                 'application': {'name': 'Local API Application', 'type': 'api', 'language': 'python', 'framework': 'fastapi'},
                 'urls': {'base_url': 'http://localhost:5000', 'api_base_url': 'http://localhost:5000/api'},
-                'description': 'Local API development'
+                'description': '🖥️ Your local development application - perfect for comprehensive API testing.'
             },
-            "🚀 Project Enigma (localhost:8000)": {
-                'application': {'name': 'Project Enigma', 'type': 'hybrid', 'language': 'python', 'framework': 'fastapi'},
+            "🚀 Project Enigma - Backend (localhost:8000)": {
+                'application': {'name': 'Project Enigma - Backend', 'type': 'hybrid', 'language': 'python', 'framework': 'fastapi'},
                 'urls': {'base_url': 'http://localhost:8000', 'api_base_url': 'http://localhost:8000/api'},
-                'description': 'AI documentation automation (22 endpoints)'
+                'description': '⚡ AI-powered release documentation automation with UI + 22 API endpoints - full-stack testing.'
             },
             "⚙️ Custom Configuration": {
                 'application': {'name': 'Custom', 'type': 'web', 'language': 'javascript', 'framework': 'web'},
                 'urls': {'base_url': '', 'api_base_url': ''},
-                'description': 'Custom settings'
+                'description': '🛠️ Configure your own application settings.'
             }
         }
         
@@ -2455,7 +2460,7 @@ quality_gates:
         seed = int(hashlib.md5(f"{base_url}_edge".encode()).hexdigest()[:8], 16)
         random.seed(seed)
         
-        # For Project Enigma, use real swagger spec data
+        # For Project Enigma Backend, use real swagger spec data
         if 'Project Enigma' in app_name and 'localhost:8000' in base_url:
             parser = get_swagger_parser()
             if parser.spec_data:
@@ -2711,7 +2716,7 @@ quality_gates:
         details = f"""🚀 Test Execution Summary for {app_name}
 {'='*50}"""
         
-        # For Project Enigma, use real API data
+        # For Project Enigma Backend, use real API data
         if 'Project Enigma' in app_name and 'localhost:8000' in str(executor_metrics):
             parser = get_swagger_parser()
             if parser and parser.spec_data:
